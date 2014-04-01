@@ -13,15 +13,16 @@
 </script> 
 </head>
 <body>
-<%-- <form id="dazhong" method="get" action="http://api.dianping.com/v1/deal/find_deals?">
+ <form id="dazhong" method="get" action="http://api.dianping.com/v1/deal/find_deals?">
 <input name="appkey" type="text" id ="1" value="50940582">
 <input name="sign" type="text" id ="2" value="<%=request.getAttribute("sign")%>">
 <input name="city" type="text" id ="3" value="深圳">
 <input name="longitude" type="text"  id="4" value="<%=request.getAttribute("ln")%>">  
 <input name="latitude" type="text"  id="5" value="<%=request.getAttribute("la")%>"> 
 <input type="submit"    >
- </form> --%> 
-<%if(request.getAttribute("sign")!=null)
+ </form> 
+ <table border="1">"
+<%/* if(request.getAttribute("sign")!=null)
 {
 	 System.out.println("<form id=\"dazhong\" method=\"get\" action=\"http://api.dianping.com/v1/deal/find_deals?\">");
 	 System.out.println("<input name=\"appkey\" type=\"text\" id =\"1\" value=\"50940582\">");
@@ -32,25 +33,22 @@
 	 System.out.printf("<input type=\"submit\">");
 			 System.out.printf("</form> ");
 
-}
+} */
  if(request.getAttribute("map")!=null)
  {
  Map<?, ?> dazhongMap=(Map<?, ?>)request.getAttribute("map");
- 
- 
  Iterator iter = dazhongMap.entrySet().iterator(); 
- System.out.println("<table border=\"1\">");
 while (iter.hasNext()) { 
     Map.Entry entry = (Map.Entry) iter.next(); 
     Object key = entry.getKey(); 
-    System.out.printf("<tr><td>%s</td>",key.toString());
-    Object val = entry.getValue();  
-    System.out.printf("<td>%s</td></tr>",key.toString());
+    Object val = entry.getValue();  %>
+    <tr><td><%= key.toString()%></td><td><%= val.toString()%></tr>
+  <% 
 } 
-System.out.println("</table>");
+
  }
 %>
-
+</table>
  
 </body>
 </html>
