@@ -42,11 +42,12 @@ while (iter.hasNext()) {
     Map.Entry entry = (Map.Entry) iter.next(); 
     Object key = entry.getKey(); 
     Object val = entry.getValue();  %>
-    <tr><td><%= key.toString()%></td><td><%= val.toString()%></tr>
+    <tr><td><%= key.toString()%></td><td><%= val.toString()%></td></tr>
   <% 
 } 
 
  }
+
 %>
 </table>
  

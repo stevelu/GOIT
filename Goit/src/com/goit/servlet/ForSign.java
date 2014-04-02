@@ -2,7 +2,9 @@ package com.goit.servlet;
 
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -17,6 +19,9 @@ import com.common.URLConnectionHelper;
 import com.common.json;
 import com.dazhong.Sign;
 import com.dazhong.DataDeal;
+import com.dazhong.model.businesses;
+import com.dazhong.model.dataJson;
+import com.google.gson.Gson;
 import com.sun.xml.internal.bind.v2.TODO;
 
 /**
@@ -77,8 +82,24 @@ public class ForSign extends HttpServlet {
 		String str =helper.sendGetBY(apiUrl, params);
 		/*HttpGet get=new HttpGet();
 		String str=get.sendHttpGet(apiUrl, params);*/
-		json json=new json();
-		Map<?, ?> dazhongMap=json.jsonToMap(str);
+		/*json json=new json();
+		Map<?, ?> dazhongMap=json.jsonToMap(str);*/
+		Gson gson=new Gson();
+		dataJson daJson=new dataJson();
+		daJson=gson.fromJson(str, dataJson.class);
+		List<businesses> bus =daJson.getBusinesses();
+		Map<String, String> dazhongMap=new LinkedHashMap<>() ;
+		int j=1;
+		for(Iterator i =bus.iterator(); i.hasNext();)  
+        {
+			businesses bu=(businesses) i.next();
+			String name="name"+j;
+			String address="address"+j;
+			dazhongMap.put(name, bu.getName());
+			dazhongMap.put(address, bu.getAddress());
+			j++;
+        }
+		//TODO transfrom 
          RequestDispatcher rd = request.getRequestDispatcher("index.jsp");  
          request.setAttribute("map",dazhongMap);//存值  
          rd.forward(request,response);
