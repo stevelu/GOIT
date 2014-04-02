@@ -1,15 +1,33 @@
+<%@page import="com.dazhong.model.businesses"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%@page import="java.util.Iterator" %> 
     <%@page import="java.util.Map" %> 
+    <%@page import="java.util.List" %> 
     <%@page import="com.common.json" %> 
+    <%@page import="com.dazhong.model.dataJson" %> 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Insert title here</title>
 <script language="javascript">  
-
+var cluster;  
+var markers= [];  
+/* 
+ *添加点标记  
+ */  
+function addPoint(la,ln) {  
+	var LngLatX = ln; //获取Lng值  
+    var LngLatY = la; //获取Lat值  
+    marker = new AMap.Marker({                  
+        icon:"http://webapi.amap.com/images/marker_sprite.png",  
+        position:new AMap.LngLat(LngLatX,LngLatY)  
+    });  
+  
+    marker.setMap(mapObj);  //在地图上添加点  
+    mapObj.setFitView(); //调整到合理视野  
+}
 </script> 
 </head>
 <body>
@@ -36,19 +54,25 @@
 } */
  if(request.getAttribute("map")!=null)
  {
- Map<?, ?> dazhongMap=(Map<?, ?>)request.getAttribute("map");
- Iterator iter = dazhongMap.entrySet().iterator(); 
-while (iter.hasNext()) { 
-    Map.Entry entry = (Map.Entry) iter.next(); 
-    Object key = entry.getKey(); 
-    Object val = entry.getValue();  %>
-    <tr><td><%= key.toString()%></td><td><%= val.toString()%></td></tr>
-  <% 
-} 
-
+	 dataJson Json=new dataJson();
+	 Json=(dataJson)request.getAttribute("map");
+	 List<businesses> buses= Json.getBusinesses();
+	 for(Iterator i =buses.iterator(); i.hasNext();)  
+     {
+			businesses bu=(businesses) i.next();
+			String la=bu.getLatitude();
+			String ln=bu.getLongitude();
+			String name=bu.getName();
+			String address=bu.getAddress();
+			%>
+			
+			<tr onmouseover=addPoint(<%=la %>,<%=ln %>)><td>name</td><td><%=name%></td></tr>
+			<tr onmouseover=addPoint(<%=la %>,<%=ln %>)><td>addresss</td><td><%=address%></td></tr><%
+     }
  }
 
-%>
+ %>
+
 </table>
  
 </body>

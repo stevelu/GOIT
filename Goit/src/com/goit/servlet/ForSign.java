@@ -87,7 +87,9 @@ public class ForSign extends HttpServlet {
 		Gson gson=new Gson();
 		dataJson daJson=new dataJson();
 		daJson=gson.fromJson(str, dataJson.class);
-		List<businesses> bus =daJson.getBusinesses();
+		
+		
+		/*List<businesses> bus =daJson.getBusinesses();
 		Map<String, String> dazhongMap=new LinkedHashMap<>() ;
 		int j=1;
 		for(Iterator i =bus.iterator(); i.hasNext();)  
@@ -95,13 +97,15 @@ public class ForSign extends HttpServlet {
 			businesses bu=(businesses) i.next();
 			String name="name"+j;
 			String address="address"+j;
+			String id="id"+j;
 			dazhongMap.put(name, bu.getName());
 			dazhongMap.put(address, bu.getAddress());
+			dazhongMap.put(id, bu.getBusiness_id());
 			j++;
-        }
+        }*/
 		//TODO transfrom 
          RequestDispatcher rd = request.getRequestDispatcher("index.jsp");  
-         request.setAttribute("map",dazhongMap);//存值  
+         request.setAttribute("map",daJson);//存值  
          rd.forward(request,response);
          
          
