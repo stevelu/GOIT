@@ -28,6 +28,7 @@ function addPoint(la,ln) {
     marker.setMap(mapObj);  //在地图上添加点  
     mapObj.setFitView(); //调整到合理视野  
 }
+
 </script> 
 </head>
 <body>
@@ -39,7 +40,8 @@ function addPoint(la,ln) {
 <input name="latitude" type="text"  id="5" value="<%=request.getAttribute("la")%>"> 
 <input type="submit"    >
  </form> 
- <table border="1">"
+ <table border="1">
+
 <%/* if(request.getAttribute("sign")!=null)
 {
 	 System.out.println("<form id=\"dazhong\" method=\"get\" action=\"http://api.dianping.com/v1/deal/find_deals?\">");
@@ -72,7 +74,8 @@ function addPoint(la,ln) {
  }
 
  %>
-
+ 
+  
 </table>
  
 </body>

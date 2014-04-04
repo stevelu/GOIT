@@ -6,8 +6,9 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Insert title here</title>
 
-<link rel="stylesheet" type="text/css" href="http://api.amap.com/Public/css/demo.Default.css" />  
+<link rel="stylesheet" type="text/css" href="http://api.amap.com/Public/css/demo.Default.css" /> 
 <script language="javascript" src="http://webapi.amap.com/maps?v=1.2&key=8685c757462e9bbddecba8e4e9505ebb"></script>  
+
 <script language="javascript">  
 var mapObj;  
 //初始化地图对象，加载地图  
@@ -18,9 +19,37 @@ function mapInit(){
 	    mapObj.plugin(["AMap.ToolBar"],function(){    
 	        mapObj.addControl(toolBar);       
 	    });   
+	 
+	 // beyond 点标记
 
+	    	addMarker(); 
 
 } 
+
+//在地图上添加点标记函数  
+function addMarker(){  
+	var marker = new AMap.Marker({  
+    	
+    	//beyond自定义图标
+    	icon:new AMap.Icon({    //复杂图标    	
+            size:new AMap.Size(28,37),//图标大小  
+            image:"http://webapi.amap.com/images/custom_a_j.png", //大图地址  
+            imageOffset:new AMap.Pixel(-28,0)//相对于大图的取图位置  
+        }), 
+        
+        position:mapObj.getCenter(), 
+        draggable:true, //点标记可拖拽  
+        cursor:'move',  //鼠标悬停点标记时的鼠标样式  
+        raiseOnDrag:true//鼠标拖拽点标记时开启点标记离开地图的效果  
+        
+        
+       
+  
+    });  
+	
+    marker.setMap(mapObj);  
+    
+}  
 
 //自定义鼠标样式图标
 function switchCursor()  
@@ -77,7 +106,9 @@ document.body.removeChild(myForm);
             <input type="button" value="默认样式点聚合" onClick="javascript:addCluster(0)"/>  
     </div> 
     <%@ include file ="shopList.jsp" %>
-   <!--  <Iframe src= "shopList.jsp" width= "100%" height= "100%" scroll= "no" frameborder= "0" name= "content" > </iframe> -->
+     <%@ include file ="parameter.jsp" %>
+
+     <!--  <Iframe src= "shopList.jsp" width= "100%" height= "100%" scroll= "no" frameborder= "0" name= "content" > </iframe> -->
    
 </body> 
 </html>
