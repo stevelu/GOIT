@@ -19,4 +19,14 @@
     <servlet-name>ForSign</servlet-name>
     <url-pattern>/ForSign</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>GetEvent</display-name>
+    <servlet-name>GetEvent</servlet-name>
+    <servlet-class>com.goit.servlet.GetEvent</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>GetEvent</servlet-name>
+    <url-pattern>/GetEvent</url-pattern>
+  </servlet-mapping>
 </web-app>

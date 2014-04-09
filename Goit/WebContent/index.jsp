@@ -8,7 +8,7 @@
 
 <link rel="stylesheet" type="text/css" href="http://api.amap.com/Public/css/demo.Default.css" /> 
 <script language="javascript" src="http://webapi.amap.com/maps?v=1.2&key=8685c757462e9bbddecba8e4e9505ebb"></script>  
-
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.js" type="text/javascript"></script>
 <script language="javascript">  
 var mapObj;  
 //初始化地图对象，加载地图  
@@ -28,29 +28,70 @@ function mapInit(){
 
 //在地图上添加点标记函数  
 function addMarker(){  
+	
+	
 	var marker = new AMap.Marker({  
     	
     	//beyond自定义图标
-    	icon:new AMap.Icon({    //复杂图标    	
+    	  icon:new AMap.Icon({    //复杂图标    	
             size:new AMap.Size(28,37),//图标大小  
             image:"http://webapi.amap.com/images/custom_a_j.png", //大图地址  
             imageOffset:new AMap.Pixel(-28,0)//相对于大图的取图位置  
-        }), 
+        }),  
         
         position:mapObj.getCenter(), 
         draggable:true, //点标记可拖拽  
         cursor:'move',  //鼠标悬停点标记时的鼠标样式  
-        raiseOnDrag:true//鼠标拖拽点标记时开启点标记离开地图的效果  
+        raiseOnDrag:true,//鼠标拖拽点标记时开启点标记离开地图的效果  
+        //by beyond
+        clickable:true,
+        //content:'<div id=\"maker\">@<div>'
         
         
        
   
     });  
-	
+	AMap.event.addListener(marker, 'rightclick',function(){marker.setContent("<div id=\"maker\">"+marker.getPosition()+"<button onclick=\"addPointToEvent("+marker.getPosition().getLat()+","+marker.getPosition().getLng()+")\">add to event</button><div>");} );
     marker.setMap(mapObj);  
+   
     
 }  
 
+//beyond add map point for event
+
+function addPointToEvent(la,ln)
+{ 
+   
+	var place=$("div#place").clone().attr("id","place1");
+	$(place).find("p#la").text( la);
+	$(place).find("p#ln").text( ln);
+	$(place).find("h").text("Event1");
+	$(place).draggable();
+	$(place).appendTo("ls.place");
+
+
+	
+ 	/* var place=document.createElement("div");
+	place.setAttribute("id","place1");
+	place.setAttribute("class","dragsource");
+	place.setAttribute("style","position: relateve;");
+	place.setAttribute("title","place"); 	
+    var la=document.createElement("p");
+    la.setAttribute("id","la");
+    la.innerHTML="la";
+    place.appendChild(la);
+    var ln=document.createElement("p");
+    ln.setAttribute("id","ln");
+    ln.innerHTML="ln";
+    place.appendChild(ln);
+    var h=document.createElement("h");
+    h.innerHTML="Event1";
+    place.appendChild(h);
+	 $("ls.place").append(place); */
+
+	}
+	
+	
 //自定义鼠标样式图标
 function switchCursor()  
 {  
