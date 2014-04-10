@@ -57,3 +57,13 @@
                 border-bottom:1px solid #CCC;
                 background-color:#fff;
             }
+              
+            td{
+                -moz-border-radius:10px;
+                -webkit-border-radius:10px;
+                font-size:12px;
+                color:#BBBBBB;
+                text-align: center;
+                border-bottom:1px solid #CCC;
+                background-color:#fff;
+            }

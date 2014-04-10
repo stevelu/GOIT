@@ -64,9 +64,9 @@ function addPointToEvent(la,ln)
 	var place=$("div#place").clone().attr("id","place1");
 	$(place).find("p#la").text( la);
 	$(place).find("p#ln").text( ln);
-	$(place).find("h").text("Event1");
+	$(place).find("h").text("add1");
 	$(place).draggable();
-	$(place).appendTo("ls.place");
+	$(place).appendTo("div#allPlace");
 
 
 	
@@ -141,7 +141,6 @@ document.body.removeChild(myForm);
       <div id="centerInfo"></div>         
        <!--  <div id="info" style="margin-top:10px;margin-left:10px">初始化加载地图时，center及level属性缺省，地图默认显示用户所在城市范围</div>  -->
     </div>   
-    <h>ready for ui</h>
     <%@ include file ="parameter.jsp" %>
     <%@ include file ="shopList.jsp" %>
      
