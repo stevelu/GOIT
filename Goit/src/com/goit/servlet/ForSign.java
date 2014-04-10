@@ -76,6 +76,7 @@ public class ForSign extends HttpServlet {
 		  map.put("city",city);
 		  map.put("longitude",ln);
 		  map.put("latitude",la);
+		 // map.put("limit", "10");
 		  DataDeal deal=new DataDeal();
 		String params=deal.para2URL(map);
 		URLConnectionHelper helper=new URLConnectionHelper();

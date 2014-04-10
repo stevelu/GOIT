@@ -18,7 +18,7 @@ var markers= [];
  *添加点标记  
  */  
 function addPoint(la,ln) {  
-	var LngLatX = ln; //获取Lng值  
+/* 	var LngLatX = ln; //获取Lng值  
     var LngLatY = la; //获取Lat值  
     marker = new AMap.Marker({                  
         icon:"http://webapi.amap.com/images/marker_sprite.png",  
@@ -26,18 +26,44 @@ function addPoint(la,ln) {
     });  
   
     marker.setMap(mapObj);  //在地图上添加点  
-    mapObj.setFitView(); //调整到合理视野  
+    mapObj.setFitView(); //调整到合理视野    */
+    
+     var LngLatX = ln; //获取Lng值  
+    var LngLatY = la; //获取Lat值  
+     marker = new AMap.Marker({  
+    	
+    	//beyond自定义图标
+    	  icon:new AMap.Icon({    //复杂图标    	
+            size:new AMap.Size(28,37),//图标大小  
+            image:"http://webapi.amap.com/images/custom_a_j.png", //大图地址  
+            imageOffset:new AMap.Pixel(-28,0)//相对于大图的取图位置  
+        }),  
+        
+        position:new AMap.LngLat(LngLatX,LngLatY),
+        //draggable:true, //点标记可拖拽  
+        cursor:'move',  //鼠标悬停点标记时的鼠标样式  
+        //raiseOnDrag:true,//鼠标拖拽点标记时开启点标记离开地图的效果  
+        //by beyond
+        clickable:true
+        //content:'<div id=\"maker\">@<div>'
+        
+        
+       
+  
+    });  
+	AMap.event.addListener(marker, 'rightclick',function(){marker.setContent("<div id=\"maker\">"+marker.getPosition()+"<button onclick=\"addPointToEvent("+marker.getPosition().getLat()+","+marker.getPosition().getLng()+")\">add to event</button><div>");} );
+    marker.setMap(mapObj); 
 }
 
 </script> 
 </head>
 <body>
- <form id="dazhong" method="get" action="http://api.dianping.com/v1/deal/find_deals?">
+ <form id="dazhong" method="get" action="http://api.dianping.com/v1/deal/find_deals?" >
 <input name="appkey" type="text" id ="1" value="50940582">
-<input name="sign" type="text" id ="2" value="<%=request.getAttribute("sign")%>">
-<input name="city" type="text" id ="3" value="深圳">
-<input name="longitude" type="text"  id="4" value="<%=request.getAttribute("ln")%>">  
-<input name="latitude" type="text"  id="5" value="<%=request.getAttribute("la")%>"> 
+<input name="sign"  type="text" id ="2" value="<%=request.getAttribute("sign")%>">
+<input name="city"  type="text" id ="3" value="深圳">
+<input name="longitude"  type="text"  id="4" value="<%=request.getAttribute("ln")%>">  
+<input name="latitude"  type="text"  id="5" value="<%=request.getAttribute("la")%>"> 
 <input type="submit"    >
  </form> 
  <table border="1">

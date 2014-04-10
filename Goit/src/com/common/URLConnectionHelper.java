@@ -30,7 +30,8 @@ public class URLConnectionHelper {
 		//url="http://www.baidu.com/";
 		BufferedReader in = null;
 		try {
-			
+			byte[] b=params.getBytes("UTF-8");
+			params=new String(params.getBytes("UTF-8"),"UTF-8");
 			String urlName = url + "?" + params;
 			
 			
