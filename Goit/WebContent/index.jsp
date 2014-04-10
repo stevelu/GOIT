@@ -142,6 +142,7 @@ document.body.removeChild(myForm);
       <div id="centerInfo"></div>         
        <!--  <div id="info" style="margin-top:10px;margin-left:10px">初始化加载地图时，center及level属性缺省，地图默认显示用户所在城市范围</div>  -->
     </div>   
+    <h>ready for ui</h>
     <%@ include file ="parameter.jsp" %>
     <%@ include file ="shopList.jsp" %>
      
