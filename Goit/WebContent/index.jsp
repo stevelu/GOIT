@@ -8,7 +8,6 @@
 
 <link rel="stylesheet" type="text/css" href="http://api.amap.com/Public/css/demo.Default.css" /> 
 <script language="javascript" src="http://webapi.amap.com/maps?v=1.2&key=8685c757462e9bbddecba8e4e9505ebb"></script>  
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.js" type="text/javascript"></script>
 <script language="javascript">  
 var mapObj;  
 //初始化地图对象，加载地图  

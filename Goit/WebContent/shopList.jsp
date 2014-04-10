@@ -58,7 +58,7 @@ function addPoint(la,ln) {
 </script> 
 </head>
 <body>
- <form id="dazhong" method="get" action="http://api.dianping.com/v1/deal/find_deals?" >
+ <form id="dazhong" method="get" action="http://api.dianping.com/v1/deal/find_deals?" style="display:none">
 <input name="appkey" type="text" id ="1" value="50940582">
 <input name="sign"  type="text" id ="2" value="<%=request.getAttribute("sign")%>">
 <input name="city"  type="text" id ="3" value="深圳">

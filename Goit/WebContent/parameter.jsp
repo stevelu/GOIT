@@ -6,6 +6,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Insert title here</title>
 <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.1/themes/base/jquery-ui.css" type="text/css" media="all" />
+<link rel="stylesheet" type="text/css" href="css/parameter.css" />
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.js" type="text/javascript"></script>
 <script type="text/javascript">
 <!--
@@ -15,36 +16,58 @@
 <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.1/jquery-ui.min.js" type="text/javascript"></script>
 </head>
 <body >
-<div id="people" class="dragsource" title ="people">
-<p id="targetMsg">people1</p>
+
+<fieldset>
+<div id="allEvent" class="captcha_wrap">
+<div class="captcha">EVENT</div>
+<!-- style="display:inline;border-style:groove;" -->
+<div id="event1" class="dragsource" title ="event" >
+<p id="targetMsg" style="display:none">event1</p>
+<h>event1</h>
+</div>
+<div id="event2" class="dragsource" title ="event" >
+<p id="targetMsg" style="display:none">event2</p>
+<h>event2</h>
+</div>
+</div>
+
+<div id="allPeople"  class="captcha_wrap">
+<div class="captcha">PEOPLE</div>
+<div id="people" class="dragsource" title ="people" >
+<p id="targetMsg" style="display:none">people1</p>
 <h>people1</h>
 </div>
-<div id="time" class="dragsource" title ="time">
-<p id="targetMsg">time1</p>
-<h>time1</h>
 </div>
-<ls class="place">
-<div id="place" class="dragsource" title ="place">
-<p id="la">la</p>
-<p id="ln">ln</p>
+
+<div id="allPlace" class="captcha_wrap">
+<div class="captcha">PLACE</div>
+<div id="place" class="dragsource" title ="place" >
+<p id="la" style="display:none">la</p>
+<p id="ln" style="display:none">ln</p>
 <h>place1</h>
 </div>
-</ls>
+</div>
+</fieldset>
+
+<fieldset>
 <div>
 <p1>drag here<p2>
 <div id="droppable" style="background-color:gray;height:500;display:none">
 <p>Can drop! </p>
 <form id ="event" class="form" method="post" action="GetEvent">
-<input type="submit">
+<input type="submit" value="GO">
 </form>
 </div>
 </div>
+</fieldset>
 
 <script>
 $(function() {
 $( ".dragsource" ).draggable({
+helper:"clone",
 start: function(event,ui) {
 $(this).find("p").html("drag to event");
+$(this).find("p").fadeIn();
 $( "#droppable" ).fadeIn(300);
 },
 stop:function(event,ui){
@@ -56,9 +79,9 @@ if ($( "#droppable" ).find( "p" ).text()=="I've got it!")
 	{
 	   $(this).find("p").html("in"); 
 	  var text="<input name=\""+$(this).attr("title")+"\"  value=\""+$(this).find("h").text()+"\"></input>";
-	  $("#event").append(text); 
+	  $("form#event").append(text); 
 	}
-
+$(this).find("p").fadeOut();
 }
 });
 $( "#droppable" ).droppable({
