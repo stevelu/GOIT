@@ -51,11 +51,17 @@
 
 <fieldset>
 <div>
-<p1>drag here<p2>
-<div id="droppable" style="background-color:gray;height:500;display:none">
+<legend>drag here</legend>
+<div id="droppable" class="droppable"> 
 <p>Can drop! </p>
 <form id ="event" class="form" method="post" action="GetEvent">
-<input type="submit" value="GO">
+<fieldset>
+<label class="time" >time</label>
+<label class="place">place</label>
+<label class="people">people</label>
+<label class="attched">attched</label>
+<input type="submit" value="GO" >
+</fieldset>
 </form>
 </div>
 </div>
@@ -79,7 +85,15 @@ if ($( "#droppable" ).find( "p" ).text()=="I've got it!")
 	{
 	   $(this).find("p").html("in"); 
 	  var text="<input name=\""+$(this).attr("title")+"\"  value=\""+$(this).find("h").text()+"\"></input>";
-	  $("form#event").append(text); 
+	  if($(this).attr("title")=="place")
+		  {
+		  $("label.place").append(text); 
+		  }
+	  if($(this).attr("title")=="people")
+	  {
+	  $("label.people").append(text); 
+	  }
+	  //$("form#event").append(text); 
 	}
 $(this).find("p").fadeOut();
 }
